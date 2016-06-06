@@ -1,14 +1,18 @@
 module Menu
+    
     def menu
         "Welcome! would you like to do..
         1) Add
         2) Show
         3) Write a file
+        4) Read a file
         Q) Quit "
     end
+    
     def show
         menu
     end
+    
     def to_s
         description
     end
@@ -37,6 +41,11 @@ class List
     def write_to_file(filename)
         IO.write(filename, @all_tasks.map(&:to_s).join("\n"))
     end
+    def read_file(filename)
+        IO.readlines(filename).each do |line|
+          add(Task.new(line.chomp))
+        end
+    end
 end
 
 class Task
@@ -62,6 +71,12 @@ if __FILE__ == $PROGRAM_NAME
                     puts my_list.show
                 when '3'
                     my_list.write_to_file(prompt('what is the filename to write to?'))
+                when '4'
+                    my_list.read_file(prompt('What file would you like to read?'))
+                    rescue Errno::ENOENT
+                        puts 'File name not found, please verify your file name and path.'
+                    end
+                    end
                 else
                     puts 'Sorry, I did not understand'
          end
