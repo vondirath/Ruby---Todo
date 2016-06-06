@@ -4,7 +4,9 @@ module Menu
         "Welcome! With this tool you can add
         or modify task - specific text files. 
         it is best to start a new file with 
-        this for best results!
+        this for best results! this will
+        display .txt file extensions.
+       
         1) Add task
         2) Show current tasks
         3) Save or Create a file
