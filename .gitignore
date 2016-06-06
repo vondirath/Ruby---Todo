@@ -6,6 +6,7 @@ module Menu
         2) Show
         3) Write a file
         4) Read a file
+        5) Delete a task from list
         Q) Quit "
     end
     
@@ -43,8 +44,11 @@ class List
     end
     def read_file(filename)
         IO.readlines(filename).each do |line|
-          add(Task.new(line.chomp))
+           add(Task.new(line.chomp))
         end
+    end
+    def delete(task_number)
+        all_tasks.delete_at(task_number - 1)
     end
 end
 
@@ -72,11 +76,16 @@ if __FILE__ == $PROGRAM_NAME
                 when '3'
                     my_list.write_to_file(prompt('what is the filename to write to?'))
                 when '4'
-                    my_list.read_file(prompt('What file would you like to read?'))
+                    begin 
+                        my_list.read_file(prompt('What file would you like to read?'))
+                        puts my_list.show
                     rescue Errno::ENOENT
                         puts 'File name not found, please verify your file name and path.'
                     end
-                    end
+                when '5'
+                    puts my_list.show
+                    my_list.delete(prompt('What line number would you like to delete?').to_i)
+                    
                 else
                     puts 'Sorry, I did not understand'
          end
