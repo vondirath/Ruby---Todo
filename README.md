@@ -9,3 +9,8 @@ You need your favorite command line tool
   * comes with Mac OS
 
 CD to the .rb file and run!
+
+
+_please note_
+------------
+I have no safeguards for other files other than .txt so please only open .txt files :) 
